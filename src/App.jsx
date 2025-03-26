@@ -1,22 +1,12 @@
-import { useDispatch, useSelector } from 'react-redux';
-import { increment, decrement, addValue } from './store/slices/counterSlices';
-import { useState } from 'react';
 import './App.css';
-
-
+import { useDispatch, useSelector } from 'react-redux';
+import { useState } from 'react';
+import { increment, decrement, addValue } from './store/slices/counterSlices';
 
 export default function App() {
-    const count = useSelector((state) => state.counter.myCountValue);
     const dispatch = useDispatch();
+    const count = useSelector((state) => state.counter.myCountValue);
     const [customValue, setCustomValue] = useState("");
-
-    const handleIncrement = (number = 1) => {
-        dispatch(increment(number));
-    };
-
-    const handleDecrement = () => {
-        dispatch(decrement());
-    };
 
     const handleAddCustomValue = () => {
         const value = Number(customValue);
@@ -25,26 +15,25 @@ export default function App() {
             setCustomValue("");
         }
     };
+    const handleDecrement = () => {
+        dispatch(decrement());
+    };
+    const handleIncrement = (number = 1) => {
+        dispatch(increment(number));
+    };
 
     return (
         <div className='practice-4'>
-            <h1>Redux Counter</h1>
-            <p>Count is: {count}</p>
-
+            <h1>Счётчик в Redux</h1>
+            <p>Значение: {count}</p>
             <div>
-              <button onClick={handleDecrement}>Decrement -1</button>
-              <button onClick={() => handleIncrement(1)}>Increment +1</button>
-              <button onClick={() => handleIncrement(3)}>Increment +3</button>
+                <button onClick={handleDecrement}>-1</button>
+                <button onClick={() => handleIncrement(1)}>+1</button>
+                <button onClick={() => handleIncrement(3)}>+3</button>
             </div>
-
             <div>
-                <input 
-                    type="number" 
-                    value={customValue} 
-                    onChange={(e) => setCustomValue(e.target.value)} 
-                    placeholder="Введите число"
-                />
-                <button onClick={handleAddCustomValue}>Добавить</button>
+                <input type="number" value={customValue} onChange={(e) => setCustomValue(e.target.value)} placeholder="Введите число"/>
+                <button onClick={handleAddCustomValue}>Add</button>
             </div>
         </div>
     );
