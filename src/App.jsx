@@ -35,7 +35,6 @@ export default function App() {
               <button onClick={handleDecrement}>Decrement -1</button>
               <button onClick={() => handleIncrement(1)}>Increment +1</button>
               <button onClick={() => handleIncrement(3)}>Increment +3</button>
-              <button onClick={() => handleIncrement(10)}>Increment +10</button>
             </div>
 
             <div>
